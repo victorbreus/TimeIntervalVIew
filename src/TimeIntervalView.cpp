@@ -89,6 +89,11 @@ void TimeIntervalView::onZoomAnimationTimer( qreal x )
 void TimeIntervalView::onZoomAnimationFinished()
 {
     updateClusterization();
+    if ( m_pZoomTimeLine )
+    {
+        m_pZoomTimeLine->deleteLater();
+        m_pZoomTimeLine = nullptr;
+    }
 }
 
 void TimeIntervalView::onScrollerStateChanged( QScroller::State newState )
@@ -126,7 +131,7 @@ void TimeIntervalView::wheelEvent( QWheelEvent* pEvent )
 
     if ( m_pZoomTimeLine )
     {
-        delete m_pZoomTimeLine;
+        m_pZoomTimeLine->deleteLater();
         m_pZoomTimeLine = nullptr;
     }
     m_pZoomTimeLine = new QTimeLine( 250, this );
