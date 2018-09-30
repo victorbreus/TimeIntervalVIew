@@ -1,4 +1,4 @@
-#include "timeintervalscene.h"
+#include "TimeIntervalScene.h"
 #include "GraphicsTimeIntervalItem.h"
 #include "GraphicsFixedSizeTextItem.h"
 #include "TimeIntervalDatabase.h"
@@ -28,7 +28,7 @@ void TimeIntervalScene::createTimeScale()
     pen.setWidthF( 2 );
     for ( int i = 0; i < 25; ++i )
     {
-        auto item = addLine( unitsPerHour * i, 10.0, unitsPerHour * i, 0.0, pen );
+        addLine( unitsPerHour * i, 10.0, unitsPerHour * i, 0.0, pen );
         GraphicsFixedSizeTextItem* textItem = new GraphicsFixedSizeTextItem( QString( "%1h").arg( i ) );
         textItem->setPos( unitsPerHour * i, 20.0 );
         addItem( textItem );
@@ -53,7 +53,7 @@ void TimeIntervalScene::onDatabasePopulated()
     }
 }
 
-void TimeIntervalScene::timerEvent( QTimerEvent* pTimerEvent )
+void TimeIntervalScene::timerEvent( QTimerEvent* )
 {
     if ( m_clusterizationFuture.valid() )
     {

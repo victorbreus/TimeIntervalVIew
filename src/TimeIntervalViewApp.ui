@@ -180,8 +180,6 @@
    <header>TimeIntervalView.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="timeline.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

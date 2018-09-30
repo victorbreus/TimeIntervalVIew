@@ -6,10 +6,10 @@
 class GraphicsTimeIntervalItem : public QGraphicsRectItem
 {
 public:
-    GraphicsTimeIntervalItem( const TimeIntervalCluster& timeIntervalCluster, QGraphicsItem* parent = nullptr );
+    GraphicsTimeIntervalItem( const TimeIntervalCluster& timeIntervalCluster, QGraphicsItem* pParent = nullptr );
 
 protected:
-    virtual void paint( QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget ) override;
+    virtual void paint( QPainter* pPainter, const QStyleOptionGraphicsItem* pOption, QWidget* pWidget ) override;
 
 private:
     QString generateTooltip( const TimeIntervalCluster& timeIntervalCluster ) const;

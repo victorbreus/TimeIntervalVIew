@@ -2,8 +2,6 @@
 
 #include <QGraphicsView>
 #include "TimeDefines.h"
-#include <QTime>
-#include <QTimeLine>
 #include <QTimer>
 #include <QScroller>
 
@@ -25,17 +23,17 @@ protected:
     virtual void showEvent( QShowEvent* pEvent );
 
 private slots:
-    void onZoomAnimationTimer( qreal x );
-    void onZoomAnimationFinished();
+    void onZoomAnimationTimer();
     void onScrollerStateChanged( QScroller::State newState );
 
 private:
     void updateClusterization();
 
 private:
-    double m_mouseWheelAccumulator;
-    QPointF m_zoomPoint;
-    double m_zoomStep;
-    QTimeLine* m_pZoomTimeLine;
+    QTimer* m_pZoomAnimationTimer;
+    double m_zoomAccumulator;
+    double m_zoomAccumulatorStep;
+    double m_zoomSteadyPointRatio;
+    QPointF m_zoomSteadyPoint;
     QRectF m_cachedRect;
 };

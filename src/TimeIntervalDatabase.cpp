@@ -1,4 +1,4 @@
-#include "timeintervaldatabase.h"
+#include "TimeIntervalDatabase.h"
 #include <random>
 #include <sstream>
 #include <iostream>
@@ -87,7 +87,7 @@ std::future<std::vector<TimeIntervalCluster>> TimeIntervalDatabase::getClusteriz
     return std::async( std::launch::async, &TimeIntervalDatabase::clusterizationTask, this, startTime, endTime, groupDuration, m_pEntries );
 }
 
-void TimeIntervalDatabase::timerEvent( QTimerEvent* timerEvent )
+void TimeIntervalDatabase::timerEvent( QTimerEvent* )
 {
     if ( m_populateFuture.valid() )
     {
@@ -118,11 +118,11 @@ TimeIntervalEntriesPtr TimeIntervalDatabase::populateTask( TimeIntervalEntries::
 
     std::vector<TimePoint> timestamps;
     timestamps.reserve( count );
-    int generatedTimeStamps = 0;
+    TimeIntervalEntries::size_type generatedTimeStamps = 0;
     while ( generatedTimeStamps != count )
     {
         double generatedValue = timestampDistributions.at( generatedTimeStamps % peakHoursCount )( gen );
-        if ( generatedValue > 0.0 & generatedValue < 24.0 )
+        if ( generatedValue > 0.0 && generatedValue < 24.0 )
         {
             timestamps.emplace_back( std::chrono::duration_cast<Milliseconds>( HoursF( generatedValue ) ) );
             ++generatedTimeStamps;

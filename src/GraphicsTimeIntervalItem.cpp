@@ -1,4 +1,4 @@
-#include "graphicstimeintervalitem.h"
+#include "GraphicsTimeIntervalItem.h"
 #include <QPen>
 #include <QTextOption>
 #include <QPainter>
@@ -6,8 +6,8 @@
 #include "TimeDefines.h"
 #include <QTime>
 
-GraphicsTimeIntervalItem::GraphicsTimeIntervalItem( const TimeIntervalCluster& timeIntervalCluster, QGraphicsItem* parent /*= nullptr */ )
-    : QGraphicsRectItem( parent )
+GraphicsTimeIntervalItem::GraphicsTimeIntervalItem( const TimeIntervalCluster& timeIntervalCluster, QGraphicsItem* pParent /*= nullptr */ )
+    : QGraphicsRectItem( pParent )
     , m_timeIntervalCluster( timeIntervalCluster )
 {
     QRectF rect;
