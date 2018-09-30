@@ -73,8 +73,11 @@ void TimeIntervalView::onZoomAnimationTimer()
         m_zoomAccumulator = 0.0;
         m_zoomAccumulatorStep = 0.0;
     }
-    fitInView( zoomToRect );
-    m_cachedRect = zoomToRect;
+    if ( zoomToRect.width() > TimeIntervalScene::unitsPerHour / 60.0 )
+    {
+        fitInView( zoomToRect );
+        m_cachedRect = zoomToRect;
+    }
     if ( fabs( m_zoomAccumulator ) < std::numeric_limits<double>::min() )
     {
         m_pZoomAnimationTimer->stop();
