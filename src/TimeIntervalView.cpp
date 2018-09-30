@@ -107,13 +107,17 @@ void TimeIntervalView::updateClusterization()
 
 void TimeIntervalView::wheelEvent( QWheelEvent* pEvent )
 {
-    if ( std::signbit( m_zoomAccumulator * pEvent->angleDelta().y() ) )
+    if ( m_zoomAccumulator * pEvent->angleDelta().y() < 0.0 )
     {
         m_zoomAccumulator = pEvent->angleDelta().y();
     }
     else
     {
         m_zoomAccumulator += pEvent->angleDelta().y();
+    }
+    if ( std::fabs( m_zoomAccumulator ) < 60.0 )
+    {
+        return;
     }
     QRectF visibleSceneRect = mapToScene( viewport()->geometry() ).boundingRect();
     m_zoomSteadyPoint = mapToScene( QRect( pEvent->pos(), QSize( 2, 2 ) ) ).boundingRect().center();
